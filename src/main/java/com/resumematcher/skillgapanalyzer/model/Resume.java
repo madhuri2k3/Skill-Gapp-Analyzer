@@ -39,8 +39,11 @@ public class Resume {
         this.skills = skills;
     }
 
-    // Convenience method to get skills as a List
+    // Convenience method to get skills as a List<String>
     public List<String> getSkillsList() {
+        if (skills == null || skills.isEmpty()) {
+            return List.of();
+        }
         return Arrays.asList(skills.split(","));
     }
 }

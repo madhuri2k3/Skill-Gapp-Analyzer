@@ -36,8 +36,9 @@ public class SkillGapController {
         Resume resume = resumeOpt.get();
         JobDescription job = jobOpt.get();
 
-        Set<String> resumeSkills = new HashSet<>(resume.getSkills());
-        Set<String> jobSkills = new HashSet<>(job.getRequiredSkills());
+        // Use getSkillsList() to get List<String>
+        Set<String> resumeSkills = new HashSet<>(resume.getSkillsList());
+        Set<String> jobSkills = new HashSet<>(job.getRequiredSkillsList());
 
         // Missing skills = job requires but resume doesn’t have
         Set<String> missingSkills = new HashSet<>(jobSkills);
@@ -47,11 +48,15 @@ public class SkillGapController {
         Set<String> matchingSkills = new HashSet<>(resumeSkills);
         matchingSkills.retainAll(jobSkills);
 
+        // Match percentage
+        int matchPercentage = (int) ((matchingSkills.size() * 100.0) / jobSkills.size());
+
         Map<String, Object> response = new HashMap<>();
         response.put("candidate", resume.getCandidateName());
         response.put("jobTitle", job.getJobTitle());
         response.put("matchingSkills", matchingSkills);
         response.put("missingSkills", missingSkills);
+        response.put("matchPercentage", matchPercentage);
 
         return ResponseEntity.ok(response);
     }

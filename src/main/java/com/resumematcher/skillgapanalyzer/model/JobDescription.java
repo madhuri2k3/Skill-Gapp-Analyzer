@@ -12,6 +12,7 @@ public class JobDescription {
 
     private String jobTitle;
 
+    // Store required skills as comma-separated string
     private String requiredSkills;
 
     public Long getId() {
@@ -38,7 +39,11 @@ public class JobDescription {
         this.requiredSkills = requiredSkills;
     }
 
+    // Convenience method to get required skills as a List<String>
     public List<String> getRequiredSkillsList() {
+        if (requiredSkills == null || requiredSkills.isEmpty()) {
+            return List.of();
+        }
         return Arrays.asList(requiredSkills.split(","));
     }
 }
