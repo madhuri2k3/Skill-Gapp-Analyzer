@@ -5,7 +5,7 @@ import com.resumematcher.skillgapanalyzer.model.JobDescription;
 import com.resumematcher.skillgapanalyzer.repository.ResumeRepository;
 import com.resumematcher.skillgapanalyzer.repository.JobDescriptionRepository;
 
-import java.util.List;
+//import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
